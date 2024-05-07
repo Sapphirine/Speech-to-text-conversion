@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speech to Text Converter</title>
+</head>
+<body>
+    <h1>Speech to Text Converter</h1>
+    <form action="/process" method="POST" enctype="multipart/form-data">
+        <input type="file" name="file" accept=".wav">
+        <input type="submit" value="Convert">
+    </form>
+
+    {% if text %}
+    <h2>Text Transcription:</h2>
+    <p>{{ text }}</p>
+    {% endif %}
+
+    {% if audio_file %}
+    <h2>Listen to Uploaded File:</h2>
+    <audio controls>
+        <source src="{{ url_for('static', filename='uploads/' + audio_file) }}" type="audio/wav">
+        Your browser does not support the audio element.
+    </audio>
+    {% endif %}
+</body>
+</html>
